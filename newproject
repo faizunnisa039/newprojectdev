@@ -1,0 +1,24 @@
+---
+ - hosts: all
+   gather_facts: no
+   become: yes
+   vars:
+    company: Abutechnologies
+    location: scarborough
+    contact: personal assistant
+   tasks:
+    - name: Install server
+      yum:
+       name: httpd
+       state: latest
+    - name: copy index.html file
+      template:
+        src: index.html
+        dest: /var/www/html/index.html
+    - name: start the apache httpd
+      service:
+       name: httpd
+       state: started
+...
+
+    
